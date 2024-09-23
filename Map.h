@@ -17,6 +17,7 @@ public:
 	int get_tresure() { return tresure_; }
 
 	void GetPositionTresur(int position);
-	bool GetTresure(int bulleyes);
+	bool GetTresure(int playerx, int playery);
+	bool GetNumberValid(int player_dig);
 };
 
