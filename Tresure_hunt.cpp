@@ -57,8 +57,12 @@ void treasure(std::array<int, 16> solution_mono_dim)
 
 int main()
 {
+	//Creation du tableau
+
 	std::array<int, 16>solution_mono_dim;
 	solution_mono_dim.fill(0);
+
+	//Salutation et presentation du jeu avec ses regles
 
 	std::cout << "Welcome to the treasure hunt, booty hunter" << std::endl;
 	std::cout << "You can choose a number between 1 and 4 for the row and the column to start digging" << std::endl;
@@ -73,35 +77,40 @@ int main()
 		{ 0,0,0,0,0 }
 
 	};*/
+	//Boucle de reset du jeu
+
 	while (replayLoop)
 	{
+		//Boucle du jeu Chasse au Tresor
 
 		while (gameLoop)
 		{
-			std::cout << std::endl << "--------------------" << std::endl;
+			std::cout << '\n' << "-----------------------------------------" << std::endl;
+
+			//Affichage du nombre d'essais restant du joueur
+
 			std::cout << "You can retry : " << party_player << " times" << std::endl;
 			if (party_player > 0)
 			{
 				gameLoop = true;
 				tresuremap = (treasur_position_x - 1) * col_size + (treasur_position_y - 1);
-
+				//Aquisition du nombre choisi par le joueur pour l'axe x 
 				std::cin >> player_dig_x;
-
-
+				//Aquisition du nombre choisi par le joueur pour l'axe y
 				std::cin >> player_dig_y;
 
+				//Verification que les nombres choissis ne depassent pas la taille du tableau
 				if ((position_x.GetNumberValid(player_dig_x) && position_y.GetNumberValid(player_dig_y)) == true)
 				{
 
 					player_dig = (player_dig_x - 1) * col_size + (player_dig_y - 1);
-
+					//Y a t-il un tresor a l'endroit choissi par le joueur ?
 					if (tresuremap == player_dig)
 					{
 						solution_mono_dim[tresuremap] = 2;
 						treasure(solution_mono_dim);
-						std::cout << '\n' << "You get the tresure." << '\n' << "You win." << std::endl;
+						std::cout << '\n' << "You get the treasure." << '\n' << "You win." << std::endl;
 						gameLoop = false;
-
 
 					}
 					else
@@ -130,9 +139,14 @@ int main()
 
 
 		}
+		//Fin de la partie, demande au joueur s'il veut recommencer a jouer
+
+		std::cout << '\n' << "-----------------------------------------" << std::endl;
 		std::cout << "Wanna play again ?\n" << "[Y/y]Yes  [N/n]No" << std::endl;
+
 		char replay;
 		std::cin >> replay;
+
 		switch (replay)
 		{
 		case 'Y':
